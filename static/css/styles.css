@@ -1,0 +1,82 @@
+/* [-=-=-=-=-=-=-=-=-] Fonts [-=-=-=-=-=-=-=-=-] */
+@import url("https://fonts.googleapis.com/css?family=Dosis|Open+Sans");
+/* [-=-=-=-=-=-=-=-=-] Variables [-=-=-=-=-=-=-=-=-] */
+/* [-=-=-=-=-=-=-=-=-] General Styles [-=-=-=-=-=-=-=-=-] */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Dosis", sans-serif; }
+
+p, a, li {
+  font-family: "Open Sans", sans-serif; }
+
+a {
+  text-decoration: underline; }
+  a:hover {
+    text-decoration: none; }
+  a:visited {
+    color: default; }
+  a:focus {
+    color: white; }
+
+body {
+  font-family: "Open Sans", sans-serif; }
+
+/* [-=-=-=-=-=-=-=-=-] Styles [-=-=-=-=-=-=-=-=-] */
+header #main-title {
+  text-align: center;
+  font-family: "Dosis", sans-serif;
+  font-size: 37px; }
+  header #main-title a {
+    color: black;
+    text-decoration: none; }
+    header #main-title a:hover {
+      color: limegreen; }
+  header #main-title:hover {
+    color: limegreen; }
+header #user-header {
+  position: absolute;
+  background: #171a1d;
+  color: white;
+  border-radius: 0 0 0 5px;
+  top: 0;
+  right: 0;
+  padding: 0.5em; }
+  header #user-header a {
+    color: white; }
+  header #user-header #user-header__profile_picture {
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 2em;
+    border-radius: 3px; }
+
+#search {
+  margin: 0 auto;
+  padding: 1em;
+  text-align: center;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+  #search #search__box {
+    padding: 1em;
+    border-radius: 3px;
+    border: 0;
+    outline: 0;
+    background: #171a1d;
+    font-size: 2em;
+    color: limegreen; }
+  #search #search__results {
+    text-align: left; }
+    #search #search__results h2 {
+      font-size: 20px; }
+    #search #search__results p {
+      border-left: #171a1d; }
+    #search #search__results h4 {
+      color: #2d343a; }
+
+#word_detail {
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  padding: 1em;
+  width: 50%;
+  margin: 0 auto; }
+
+/*# sourceMappingURL=styles.css.map */

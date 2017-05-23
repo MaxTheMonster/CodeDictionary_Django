@@ -1,0 +1,12 @@
+{% extends "Dictionary/base.html" %}
+
+{% block doc-title %}Login - {% endblock %}
+
+{% block content %}
+<form method="post" autocomplete="off">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Login">
+</form>
+
+{% endblock %}

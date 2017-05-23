@@ -1,0 +1,42 @@
+{% extends "Dictionary/base.html" %}
+
+{% block content %}
+{% csrf_token %}
+  <div id="search">
+    <input type="text" placeholder="Search, in English please..." id="search__box" name="search">
+    <div id="search__results"></div>
+
+  </div>
+
+<script>
+const search_results = document.querySelector("#search__results");
+const search_box = document.querySelector("#search__box");
+
+function getDefinitions() {
+  search_box_value = search_box.value
+  if (search_box_value == "") {
+    search_results.innerHTML = ""          
+    return
+  }
+  $.ajax({
+      type: "POST",
+      url: "/search/",
+      data: {
+          'search_text' : search_box_value,
+          'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+      },
+      success: searchSuccess,
+      dataType: 'html'
+  });
+}
+
+
+function searchSuccess(data, textStatus, jqXHR) {
+  search_results.innerHTML = data
+}
+
+search_box.addEventListener("keyup", getDefinitions);
+
+</script>
+
+{% endblock %}

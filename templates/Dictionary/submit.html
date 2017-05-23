@@ -1,0 +1,10 @@
+{% extends "Dictionary/base.html" %}
+
+{% block title %}Submit word - {% endblock %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit Word" />
+</form>
+{% endblock %}

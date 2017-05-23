@@ -1,0 +1,128 @@
+/* [-=-=-=-=-=-=-=-=-] Fonts [-=-=-=-=-=-=-=-=-] */
+@import url('https://fonts.googleapis.com/css?family=Dosis|Open+Sans');
+
+/* [-=-=-=-=-=-=-=-=-] Variables [-=-=-=-=-=-=-=-=-] */
+
+$green: limegreen;
+$dark-gray: darken(slategray, 40%);
+$light-gray: darken(slategray, 30%);
+
+$display-font: 'Dosis', sans-serif;
+$content-font: 'Open Sans', sans-serif;
+
+/* [-=-=-=-=-=-=-=-=-] General Styles [-=-=-=-=-=-=-=-=-] */
+h1, h2, h3, h4, h5, h6 {
+    font-family: $display-font;
+}
+
+p, a, li {
+    font-family: $content-font;
+}
+
+a {
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:visited {
+        color: default;
+    }
+
+    &:focus {
+        color: white;
+    }
+}
+
+
+body {
+    font-family: $content-font;
+}
+
+/* [-=-=-=-=-=-=-=-=-] Styles [-=-=-=-=-=-=-=-=-] */
+
+header {
+    #main-title {
+        text-align: center;
+        font-family: $display-font;
+        font-size: 37px;
+
+        a {
+            color: black;
+            text-decoration: none;
+            
+            &:hover {
+                color: $green;
+            }  
+        }
+
+        &:hover {
+            color: $green;
+        }
+    }
+    
+    #user-header {
+        position: absolute;
+        background: $dark-gray;
+        color: white;
+        border-radius: 0 0 0 5px;
+        top: 0;
+        right: 0;
+        padding: 0.5em;
+        
+        a {
+            color: white;
+        }
+
+        #user-header__profile_picture {
+            width: 1.5em;
+            height: 1.5em;
+            margin-right: 2em;
+            border-radius: 3px;
+        }
+    }
+}
+
+#search {
+    margin: 0 auto;
+    padding: 1em;
+    text-align: center;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+    #search__box {
+        padding: 1em;
+        border-radius: 3px;
+        border: 0;
+        outline: 0;
+        background: $dark-gray;
+        font-size: 2em;
+        color: $green;
+    }
+    
+    #search__results {
+        text-align: left;
+        
+        h2 {
+            font-size: 20px;
+        }
+
+        p {
+            border-left: $dark-gray;
+        }
+        
+        h4 {
+            color: $light-gray;
+        }
+    }
+}
+
+#word_detail {
+    border: 1px solid rgba(0,0,0,0.4);
+    padding: 1em;
+    width: 50%;
+    margin: 0 auto;
+}

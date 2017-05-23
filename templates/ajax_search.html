@@ -1,0 +1,13 @@
+{% if error %}
+    <h4>{{ error }}</h4>
+{% else %}
+{% for word in words %}
+        
+    <div class="word">
+        <h2><a href="{{ word.get_absolute_url }}">{{ word.name }}</a></h2>
+        <p>{{ word.definition }}</p>
+        <h4>{{ word.published }}</h4>
+    </div>
+   
+{% endfor %}
+{% endif %}
