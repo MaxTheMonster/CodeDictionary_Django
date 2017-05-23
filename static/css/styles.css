@@ -9,12 +9,13 @@ p, a, li {
   font-family: "Open Sans", sans-serif; }
 
 a {
+  outline: 4;
   text-decoration: underline; }
   a:hover {
     text-decoration: none; }
   a:visited {
-    color: default; }
-  a:focus {
+    color: limegreen; }
+  a:click {
     color: white; }
 
 body {
@@ -66,6 +67,8 @@ header #user-header {
     color: limegreen; }
   #search #search__results {
     text-align: left; }
+    #search #search__results .word {
+      border-bottom: 1px solid black; }
     #search #search__results h2 {
       font-size: 20px; }
     #search #search__results p {

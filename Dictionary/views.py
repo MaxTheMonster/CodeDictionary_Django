@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.views import generic
 from django.template.context_processors import csrf
 from django.utils.decorators import method_decorator
@@ -77,14 +77,14 @@ class RegisterView(generic.CreateView):
 class LoginView(generic.FormView):
     template_name = "users/login.html"
     form_class = AuthenticationForm
-    success_url = "/home/"
+    success_url = reverse_lazy("index")
 
     @method_decorator(sensitive_post_parameters('password'))
     @method_decorator(csrf_protect)
     @method_decorator(never_cache)
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated():
-            return redirect("home")
+            return redirect("index")
         else:
             request.session.set_test_cookie()
 

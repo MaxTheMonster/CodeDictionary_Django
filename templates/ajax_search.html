@@ -6,8 +6,8 @@
     <div class="word">
         <h2><a href="{{ word.get_absolute_url }}">{{ word.name }}</a></h2>
         <p>{{ word.definition }}</p>
-        <h4>{{ word.published }}</h4>
+        <h4>{{ word.published|date:"SHORT_DATE_FORMAT" }}</h4>
     </div>
-   
+
 {% endfor %}
 {% endif %}

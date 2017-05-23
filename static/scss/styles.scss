@@ -20,6 +20,7 @@ p, a, li {
 }
 
 a {
+    outline: 4;
     text-decoration: underline;
 
     &:hover {
@@ -27,10 +28,10 @@ a {
     }
 
     &:visited {
-        color: default;
+        color: $green;
     }
 
-    &:focus {
+    &:click {
         color: white;
     }
 }
@@ -104,6 +105,10 @@ header {
     }
     
     #search__results {
+        .word {
+            border-bottom: 1px solid black;
+        }
+
         text-align: left;
         
         h2 {
