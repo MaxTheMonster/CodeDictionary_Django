@@ -13,19 +13,19 @@
 </head>
 <body>
     <header>
-        <h1 id="main-title"><a tabindex="4" href="{% url 'index' %}">CodeDictionary</a></h1>
-        <a tabindex="1" href="{% url 'submit' %}">Submit</a>
+        <h1 id="main-title"><a tabindex="5" href="{% url 'index' %}">CodeDictionary</a></h1>
+        <a tabindex="2" href="{% url 'submit' %}">Submit</a>
         {% if user.is_authenticated %}
             <div id="user-header">    
-                <a tabindex="2" href="{% url 'login' %}"><img id="user-header__profile_picture" src="media/{{ user.profile_picture }}" alt="">Logged in as {{ user.username }}</a>
-                <a tabindex="3" href="{% url 'logout' %}">Logout</a>                
+                <a tabindex="3" href="{% url 'profile' user.username %}"><img id="user-header__profile_picture" src="/media/{{ user.profile_picture }}" alt="">Logged in as {{ user.username }}</a>
+                <a tabindex="4" href="{% url 'logout' %}">Logout</a>                
             </div>
 
             
         {% elif not user.is_authenticated %}
             <div id="user-header">
-                <a tabindex="2" href="{% url 'login' %}">Login</a>
-                <a tabindex="3" href="{% url 'register' %}">Register</a>                
+                <a tabindex="3" href="{% url 'login' %}">Login</a>
+                <a tabindex="4" href="{% url 'register' %}">Register</a>                
             </div>
         {% endif %}
     </header>

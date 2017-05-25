@@ -61,6 +61,12 @@ class WordDetailView(generic.DetailView):
 class SearchWordsView(generic.ListView):
     model = models.Word
 
+
+class ProfileView(generic.DetailView):
+    template_name = "users/profile.html"
+    model = models.User
+    slug_field = 'username'
+
 class RegisterView(generic.CreateView):
     template_name = "users/register.html"
     form_class = forms.UserCreationForm
@@ -68,8 +74,8 @@ class RegisterView(generic.CreateView):
 
     def form_valid(self, form):
         new_user = authenticate(username=form.cleaned_data['username'],
-                                       password=form.cleaned_data['password1'],
-                                       )
+                                password=form.cleaned_data['password1'],
+                               )
         login(self.request, new_user)
         return HttpResponseRedirect("/dashboard/")
 

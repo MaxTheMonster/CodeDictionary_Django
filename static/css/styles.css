@@ -1,5 +1,9 @@
 /* [-=-=-=-=-=-=-=-=-] Fonts [-=-=-=-=-=-=-=-=-] */
 @import url("https://fonts.googleapis.com/css?family=Dosis|Open+Sans");
+/* [-=-=-=-=-=-=-=-=-] Clearfix [-=-=-=-=-=-=-=-=-] */
+* {
+  box-sizing: border-box; }
+
 /* [-=-=-=-=-=-=-=-=-] Variables [-=-=-=-=-=-=-=-=-] */
 /* [-=-=-=-=-=-=-=-=-] General Styles [-=-=-=-=-=-=-=-=-] */
 h1, h2, h3, h4, h5, h6 {
@@ -35,7 +39,7 @@ header #main-title {
     color: limegreen; }
 header #user-header {
   position: absolute;
-  background: #171a1d;
+  background: #28282D;
   color: white;
   border-radius: 0 0 0 5px;
   top: 0;
@@ -59,12 +63,20 @@ header #user-header {
   flex-direction: column; }
   #search #search__box {
     padding: 1em;
-    border-radius: 3px;
+    border-radius: 5px;
     border: 0;
     outline: 0;
-    background: #171a1d;
+    background: #28282D;
     font-size: 2em;
-    color: limegreen; }
+    color: limegreen;
+    transition: 0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97);
+    border: 3px solid #30343F; }
+    #search #search__box:focus {
+      border: 3px solid #28282D;
+      background: white;
+      box-shadow: 0 1rem #30343F;
+      transform: translateY(-4px);
+      transition: 0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97); }
   #search #search__results {
     text-align: left; }
     #search #search__results .word {
@@ -72,9 +84,9 @@ header #user-header {
     #search #search__results h2 {
       font-size: 20px; }
     #search #search__results p {
-      border-left: #171a1d; }
+      border-left: #28282D; }
     #search #search__results h4 {
-      color: #2d343a; }
+      color: #30343F; }
 
 #word_detail {
   border: 1px solid rgba(0, 0, 0, 0.4);

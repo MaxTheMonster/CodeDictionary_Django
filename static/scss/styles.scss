@@ -1,14 +1,21 @@
 /* [-=-=-=-=-=-=-=-=-] Fonts [-=-=-=-=-=-=-=-=-] */
 @import url('https://fonts.googleapis.com/css?family=Dosis|Open+Sans');
 
+/* [-=-=-=-=-=-=-=-=-] Clearfix [-=-=-=-=-=-=-=-=-] */
+* {
+    box-sizing: border-box;
+}
+
 /* [-=-=-=-=-=-=-=-=-] Variables [-=-=-=-=-=-=-=-=-] */
 
 $green: limegreen;
-$dark-gray: darken(slategray, 40%);
-$light-gray: darken(slategray, 30%);
+$dark-gray: #28282D;
+$light-gray: #30343F;
 
 $display-font: 'Dosis', sans-serif;
 $content-font: 'Open Sans', sans-serif;
+
+$transition: 0.8s all;
 
 /* [-=-=-=-=-=-=-=-=-] General Styles [-=-=-=-=-=-=-=-=-] */
 h1, h2, h3, h4, h5, h6 {
@@ -96,21 +103,32 @@ header {
     
     #search__box {
         padding: 1em;
-        border-radius: 3px;
+        border-radius: 5px;
         border: 0;
         outline: 0;
         background: $dark-gray;
         font-size: 2em;
         color: $green;
+        transition: .25s cubic-bezier(.17,.67,.52,.97);  
+        border: 3px solid $light-gray;
+
+        &:focus {
+            border: 3px solid $dark-gray;
+            background: white;
+            box-shadow: 0 1rem $light-gray;
+           
+            transform: translateY(-4px);
+            transition: .25s cubic-bezier(.17,.67,.52,.97);
+            // border-bottom: 10px solid $light-gray;
+        }
     }
     
     #search__results {
+        text-align: left;
         .word {
             border-bottom: 1px solid black;
         }
 
-        text-align: left;
-        
         h2 {
             font-size: 20px;
         }
