@@ -66,6 +66,16 @@ class ProfileView(generic.DetailView):
     template_name = "users/profile.html"
     model = models.User
     slug_field = 'username'
+    context_object_name = 'viewed_user'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.user_words = models.Word.objects.filter(user=request.user).order_by("-published")
+        return super(ProfileView, self).dispatch(request, *args, **kwargs)
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        context["words"] = self.user_words
+        return context
 
 class RegisterView(generic.CreateView):
     template_name = "users/register.html"

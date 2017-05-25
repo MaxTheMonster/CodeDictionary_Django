@@ -25,7 +25,28 @@ a {
 body {
   font-family: "Open Sans", sans-serif; }
 
+.button {
+  font-size: 1.2rem;
+  background: limegreen;
+  border-radius: 5px;
+  padding: 0.5em 1em;
+  color: white !important;
+  text-decoration: none;
+  transition: 0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97);
+  border: 3px solid limegreen; }
+  .button:hover {
+    transition: 0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97);
+    border: 3px solid limegreen;
+    background: white;
+    color: limegreen !important;
+    text-decoration: none; }
+  .button:focus {
+    transform: translateY(-4px);
+    transition: 0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97); }
+
 /* [-=-=-=-=-=-=-=-=-] Styles [-=-=-=-=-=-=-=-=-] */
+header #index-submit-button {
+  display: inline-block; }
 header #main-title {
   text-align: center;
   font-family: "Dosis", sans-serif;
@@ -93,5 +114,12 @@ header #user-header {
   padding: 1em;
   width: 50%;
   margin: 0 auto; }
+
+#user-profile {
+  margin: 0 auto;
+  width: 60%;
+  text-align: center; }
+  #user-profile img {
+    border-radius: 5px; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -6,6 +6,6 @@
 <section id="word_detail">
     <h2>{{ word.name }} - {{ word.published|date:"SHORT_DATE_FORMAT" }}</h2>
     <p>{{ word.definition }}</p>
-    <h3>Submitted by <a href="#">{{ word.user }}</a></h3>
+    <h3>Submitted by <a href="{% url 'profile' word.user.username %}">{{ word.user }}</a></h3>
 </section>
 {% endblock %}

@@ -14,7 +14,7 @@
 <body>
     <header>
         <h1 id="main-title"><a tabindex="5" href="{% url 'index' %}">CodeDictionary</a></h1>
-        <a tabindex="2" href="{% url 'submit' %}">Submit</a>
+        <a tabindex="2" id="index-submit-button" class="button" href="{% url 'submit' %}">Submit</a>
         {% if user.is_authenticated %}
             <div id="user-header">    
                 <a tabindex="3" href="{% url 'profile' user.username %}"><img id="user-header__profile_picture" src="/media/{{ user.profile_picture }}" alt="">Logged in as {{ user.username }}</a>

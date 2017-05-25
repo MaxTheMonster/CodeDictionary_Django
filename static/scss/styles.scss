@@ -15,7 +15,7 @@ $light-gray: #30343F;
 $display-font: 'Dosis', sans-serif;
 $content-font: 'Open Sans', sans-serif;
 
-$transition: 0.8s all;
+$transition: .25s cubic-bezier(.17,.67,.52,.97);
 
 /* [-=-=-=-=-=-=-=-=-] General Styles [-=-=-=-=-=-=-=-=-] */
 h1, h2, h3, h4, h5, h6 {
@@ -48,9 +48,36 @@ body {
     font-family: $content-font;
 }
 
+.button {
+    font-size: 1.2rem;
+    background: $green;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    color: white !important;
+    text-decoration: none;
+    transition: $transition;
+    border: 3px solid $green;
+
+    &:hover {
+        transition: $transition;
+        border: 3px solid $green;
+        background: white;
+        color: $green !important;
+        text-decoration: none;
+    }
+
+    &:focus {
+        transform: translateY(-4px);
+        transition: $transition;
+    }
+}
+
 /* [-=-=-=-=-=-=-=-=-] Styles [-=-=-=-=-=-=-=-=-] */
 
 header {
+    #index-submit-button {
+        display: inline-block;
+    }
     #main-title {
         text-align: center;
         font-family: $display-font;
@@ -109,7 +136,7 @@ header {
         background: $dark-gray;
         font-size: 2em;
         color: $green;
-        transition: .25s cubic-bezier(.17,.67,.52,.97);  
+        transition: $transition;  
         border: 3px solid $light-gray;
 
         &:focus {
@@ -118,7 +145,7 @@ header {
             box-shadow: 0 1rem $light-gray;
            
             transform: translateY(-4px);
-            transition: .25s cubic-bezier(.17,.67,.52,.97);
+            transition: $transition;
             // border-bottom: 10px solid $light-gray;
         }
     }
@@ -148,4 +175,14 @@ header {
     padding: 1em;
     width: 50%;
     margin: 0 auto;
+}
+
+#user-profile {
+    margin: 0 auto;
+    width: 60%;
+    text-align: center;
+
+    img {
+        border-radius: 5px;
+    }
 }
