@@ -1,0 +1,23 @@
+{% extends "Dictionary/base.html" %}
+
+{% block title %}{{ viewed_user.username }} - {% endblock %}
+
+{% block content %}
+<section id="user-profile">
+    <img id="user-profile__picture" src="/media/{{ viewed_user.profile_picture }}" alt="">
+    <h1>{{ viewed_user.username }}</h1>
+    <h2>Joined on {{ viewed_user.date_joined|date:"SHORT_DATE_FORMAT" }}</h2>
+</section>
+
+<section id="user-submitted-words">
+    {% for word in words %}
+    <div class="user-word word">
+        <h3><a href="{{ word.get_absolute_url }}">{{ word.name }}</a> - {{ word.published|date:"SHORT_DATE_FORMAT" }}</h3>
+        <p>{{ word.definition }}</p>
+    </div>
+    <hr>
+    {% endfor %}
+</section>
+
+
+{% endblock %}

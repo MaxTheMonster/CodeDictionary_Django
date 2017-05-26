@@ -58,8 +58,15 @@ class WordDetailView(generic.DetailView):
     model = models.Word
     template_name = "Dictionary/word_detail.html"
 
+
 class SearchWordsView(generic.ListView):
     model = models.Word
+
+
+class CategoryView(generic.DetailView):
+    template_name = "Dictionary/categories.html"
+    model = models.Category
+    slug_field = 'name'
 
 
 class ProfileView(generic.DetailView):
@@ -69,7 +76,8 @@ class ProfileView(generic.DetailView):
     context_object_name = 'viewed_user'
 
     def dispatch(self, request, *args, **kwargs):
-        self.user_words = models.Word.objects.filter(user=request.user).order_by("-published")
+        self.current_user = models.User.objects.get(slug=self.kwargs["slug"])
+        self.user_words = models.Word.objects.filter(user=self.current_user).order_by("-published")
         return super(ProfileView, self).dispatch(request, *args, **kwargs)
     
     def get_context_data(self, *args, **kwargs):

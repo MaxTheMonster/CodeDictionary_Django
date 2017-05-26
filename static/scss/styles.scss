@@ -17,6 +17,31 @@ $content-font: 'Open Sans', sans-serif;
 
 $transition: .25s cubic-bezier(.17,.67,.52,.97);
 
+$bp-mobile: 540px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+$bp-widescreen: 1920px;
+
+/* [-=-=-=-=-=-=-=-=-] Mixins [-=-=-=-=-=-=-=-=-] */
+
+@mixin mobile {
+   @media (max-width: #{$bp-mobile}){
+    @content;
+  }
+}
+@mixin tablet {
+   @media (min-width: #{$bp-tablet}) and (max-width: #{$bp-desktop - 1px}){
+    @content;
+  }
+}
+@mixin desktop {
+   @media (min-width: #{$bp-desktop}){
+    @content;
+  }
+}
+
+
+
 /* [-=-=-=-=-=-=-=-=-] General Styles [-=-=-=-=-=-=-=-=-] */
 h1, h2, h3, h4, h5, h6 {
     font-family: $display-font;
@@ -27,6 +52,7 @@ p, a, li {
 }
 
 a {
+    color: $green;
     outline: 4;
     text-decoration: underline;
 
@@ -67,7 +93,7 @@ body {
     }
 
     &:focus {
-        transform: translateY(-4px);
+        transform: translateY(-0.4em);
         transition: $transition;
     }
 }
@@ -76,7 +102,12 @@ body {
 
 header {
     #index-submit-button {
-        display: inline-block;
+        @include mobile {
+            display: block;
+            width: 60%;
+            text-align: center;
+            margin: 0 auto;
+        }
     }
     #main-title {
         text-align: center;
@@ -128,6 +159,11 @@ header {
     justify-content: center;
     flex-direction: column;
     
+    @include mobile {
+        width: 97%;
+    }
+
+
     #search__box {
         padding: 1em;
         border-radius: 5px;
@@ -139,12 +175,17 @@ header {
         transition: $transition;  
         border: 3px solid $light-gray;
 
+        @include mobile {
+            font-size: 1.3em;
+            padding: 0.9em;
+        }
+
+
         &:focus {
             border: 3px solid $dark-gray;
             background: white;
-            box-shadow: 0 1rem $light-gray;
            
-            transform: translateY(-4px);
+            transform: translateY(-0.4em);
             transition: $transition;
             // border-bottom: 10px solid $light-gray;
         }
@@ -175,10 +216,15 @@ header {
     padding: 1em;
     width: 50%;
     margin: 0 auto;
+
+    @include mobile {
+        width: 100%;
+        border: 0;
+    }
 }
 
 #user-profile {
-    margin: 0 auto;
+    margin: 2em auto;
     width: 60%;
     text-align: center;
 
