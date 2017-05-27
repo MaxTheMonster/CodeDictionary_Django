@@ -5,6 +5,41 @@
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
+    <input type="text" id="category_search">
+    <div id="category_results"></div>
     <input type="submit" value="Submit Word" />
 </form>
+
+<script>
+const search_results = document.querySelector("#category_results");
+const category_box = document.querySelector("#category_search");
+
+function getDefinitions() {
+  category_box_value = category_box.value
+  if (category_box_value == "") {
+    search_results.innerHTML = ""          
+    return
+  }
+  $.ajax({
+      type: "POST",
+      url: "/search_categories/",
+      data: {
+          'search_text' : category_box_value,
+          'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+      },
+      success: searchSuccess,
+      dataType: 'html'
+  });
+}
+
+
+function searchSuccess(data, textStatus, jqXHR) {
+    search_results.innerHTML = data
+    console.log(data)
+}
+
+category_box.addEventListener("keyup", getDefinitions);
+
+</script>
+
 {% endblock %}

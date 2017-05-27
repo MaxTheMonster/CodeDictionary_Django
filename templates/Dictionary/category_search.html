@@ -1,0 +1,10 @@
+{% if error %}
+    <h4>{{ error }}</h4>
+{% else %}
+{% for category in categories %}
+    <div class="category">
+        <h2><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h2>
+        <hr>
+    </div>
+{% endfor %}
+{% endif %}

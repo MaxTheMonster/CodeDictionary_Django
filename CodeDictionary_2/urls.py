@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name="index"),
     url(r'^search/$', views.search_words, name='search_words'),
+    url(r'^search_categories/$', views.search_categories, name='search_categories'),
     url(r'^submit/$', views.CreateWordView.as_view(), name="submit"),
     url(r'^word/(?P<slug>[-\w]+)/$', views.WordDetailView.as_view(), name="word_detail"),
     url(r'^logout/$', views.LogoutView.as_view(), name="logout"),

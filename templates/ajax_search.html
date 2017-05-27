@@ -7,7 +7,7 @@
         <h2><a href="{{ word.get_absolute_url }}">{{ word.name }}</a></h2>
         <p>{{ word.definition }}</p>
         <h4>Submitted By <a href="{% url 'profile' word.user.username %}">{{ word.user.username }}</a> - on {{ word.published|date:"SHORT_DATE_FORMAT" }}</h4>
-        <h4 class="word__category">{{ word.category }}</h4>
+        <h4 class="word__category"><a href="{% url 'category' word.category.slug %}">{{ word.category.name }}</a></h4>
     </div>
 
 {% endfor %}

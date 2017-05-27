@@ -30,11 +30,11 @@ class IndexView(EnsureCsrfCookieMixin, generic.TemplateView):
 class CreateWordView(LoginRequiredMixin, generic.CreateView):
     template_name = "Dictionary/submit.html"
     form_class = forms.CreateWordForm
-    success_url = '/'
+    success_url = reverse_lazy("index")
     #model = models.Word
 
     def form_valid(self, form):
-        print("VALID")
+        print("Valid")
         try:
             category_check = models.Category.objects.get(name=form.instance.category)
             form.instance.category = category_check
@@ -43,14 +43,26 @@ class CreateWordView(LoginRequiredMixin, generic.CreateView):
         except ObjectDoesNotExist:
             new_category = models.Category(name=form.instance.category)
             new_category.save()
+            print(new_category)
             form.instance.category = new_category
-            print("New") 
             
         form.instance.user = self.request.user
         return super(CreateWordView, self).form_valid(form)
 
     def form_invalid(self, form):
-        print("invalid")
+        print("Invalid")
+        try:
+            category_check = models.Category.objects.get(name=form.instance.category)
+            form.instance.category = category_check
+            print("Exists")
+
+        except ObjectDoesNotExist:
+            new_category = models.Category(name=form.instance.category)
+            new_category.save()
+            print(new_category)
+            form.instance.category = new_category
+            
+        form.instance.user = self.request.user
         return super(CreateWordView, self).form_valid(form)
 
 
@@ -76,7 +88,7 @@ class ProfileView(generic.DetailView):
     context_object_name = 'viewed_user'
 
     def dispatch(self, request, *args, **kwargs):
-        self.current_user = models.User.objects.get(slug=self.kwargs["slug"])
+        self.current_user = models.User.objects.get(username=self.kwargs["slug"])
         self.user_words = models.Word.objects.filter(user=self.current_user).order_by("-published")
         return super(ProfileView, self).dispatch(request, *args, **kwargs)
     
@@ -88,14 +100,15 @@ class ProfileView(generic.DetailView):
 class RegisterView(generic.CreateView):
     template_name = "users/register.html"
     form_class = forms.UserCreationForm
-    success_url = "/login/"
+    success_url = reverse_lazy("login")
 
     def form_valid(self, form):
-        new_user = authenticate(username=form.cleaned_data['username'],
+        user = form.save()
+        user = authenticate(username=form.cleaned_data['username'],
                                 password=form.cleaned_data['password1'],
                                )
-        login(self.request, new_user)
-        return HttpResponseRedirect("/dashboard/")
+        #login(self.request, user)
+        return super(RegisterView, self).form_valid(form)
 
 
 class LoginView(generic.FormView):
@@ -130,6 +143,7 @@ class LogoutView(generic.RedirectView):
     logout(request)
     return super(LogoutView, self).get(request, *args, **kwargs)
 
+
 def search_words(request):
     if request.method == "POST":
         if request.POST["search_text"] == "":
@@ -146,6 +160,24 @@ def search_words(request):
 
     else:
         return render(request, "ajax_search.html", {"words": words})
+
+def search_categories(request):
+    if request.method == "POST":
+        if request.POST["search_text"] == "":
+            search_text = ""
+        else:
+            search_text = request.POST["search_text"]
+    else:
+        search_text = ''
+    categories = models.Category.objects.filter(name__contains=search_text)
+    
+    if not categories.exists():
+        error = "This is a new tag, it will be created."
+        return render(request, "Dictionary/category_search.html", {"error": error})
+
+    else:
+        return render(request, "Dictionary/category_search.html", {"categories": categories})
+
 
 
 # class SearchView():

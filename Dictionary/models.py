@@ -42,6 +42,16 @@ class User(AbstractUser):
 
 class Category(models.Model):
     name = models.CharField(max_length=120)
+    slug = models.SlugField(editable=False)
+
+    def save(self, *args, **kwargs):
+      if not self.pk:
+          self.slug = slugify(self.name)
+      super(Category, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+      return reverse("category", kwargs={"slug": self.slug})
+
 
     def __str__(self):
         return self.name
@@ -53,7 +63,8 @@ class Word(models.Model):
     published = models.DateTimeField(auto_now_add=True, verbose_name=(u'Created'))
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="word")
     slug = models.SlugField(editable=False)
-    category = models.CharField(max_length=40, default="None", blank=True)
+    # category = models.CharField(max_length=40, default="None", blank=True)
+    category = models.ForeignKey(Category, related_name="category")
 
     def save(self, *args, **kwargs):
       if not self.pk:
@@ -62,7 +73,6 @@ class Word(models.Model):
 
     def get_absolute_url(self):
       return reverse("word_detail", kwargs={"slug": self.slug})
-
 
     def __str__(self):
         return self.name
