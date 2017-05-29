@@ -61,15 +61,21 @@ class Word(models.Model):
     name = models.CharField(max_length=140)
     definition = models.CharField(max_length=500)
     published = models.DateTimeField(auto_now_add=True, verbose_name=(u'Created'))
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="word")
+    user_creator = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(editable=False)
     # category = models.CharField(max_length=40, default="None", blank=True)
-    category = models.ForeignKey(Category, related_name="category")
+    category = models.ForeignKey(Category)
 
     def save(self, *args, **kwargs):
-      if not self.pk:
-          self.slug = slugify(self.name)
-      super(Word, self).save(*args, **kwargs)
+        print(self.name)
+        print(self.id)
+        print(self.user_creator)
+        if not self.pk:
+            self.slug = slugify(self.name)
+        
+        print(self.slug)
+
+        super(Word, self).save()
 
     def get_absolute_url(self):
       return reverse("word_detail", kwargs={"slug": self.slug})

@@ -5,6 +5,7 @@
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
+    <div id="hidden_category"></div>
     <label for="category_search">
         Category: 
         <input type="text" id="category_search" name="category_search">
@@ -18,9 +19,10 @@
 </form>
 
 <script>
+const hidden_category_container = document.querySelector("form #hidden_category");
 const search_results = document.querySelector("#category_results radiogroup");
 const category_box = document.querySelector("#category_search");
-const hidden_category = document.querySelector("#id_category");
+// const hidden_category = document.querySelector("#id_category");
 
 function getDefinitions() {
   category_box_value = category_box.value
@@ -40,14 +42,15 @@ function getDefinitions() {
   });
 }
 
-function categorySelected(name) {
-    console.log(name)
-}
-
-
 function searchSuccess(data, textStatus, jqXHR) {
     search_results.innerHTML = data
-    console.log(data)
+    if (data.length == 54) {
+        hidden_category_container.innerHTML = ""
+        hidden_category_container.innerHTML += "<input type='hidden' name='category' value='" + category_box.value + "'>"
+    } else {
+        hidden_category_container.innerHTML = ""
+    }
+    console.log(data.length)
 }
 
 

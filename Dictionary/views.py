@@ -34,35 +34,25 @@ class CreateWordView(LoginRequiredMixin, generic.CreateView):
     #model = models.Word
 
     def form_valid(self, form):
-        print("Valid")
-        try:
-            category_check = models.Category.objects.get(name=form.instance.category)
-            form.instance.category = category_check
-            print("Exists")
-
-        except ObjectDoesNotExist:
-            new_category = models.Category(name=form.instance.category)
-            new_category.save()
-            print(new_category)
-            form.instance.category = new_category
-            
-        form.instance.user = self.request.user
+        form.instance.user_creator = self.request.user
+        print(form.instance.category)
         return super(CreateWordView, self).form_valid(form)
 
     def form_invalid(self, form):
         print("Invalid")
+        print(form.instance.category_search)
         try:
             category_check = models.Category.objects.get(name=form.instance.category)
-            form.instance.category = category_check
             print("Exists")
 
-        except ObjectDoesNotExist:
-            new_category = models.Category(name=form.instance.category)
+        except:
+            print("Does Not Exist, creating")
+            # new_category = models.Category(name=form.instance.category)
+            new_category = models.Category.objects.create(name=form.instance.category)
             new_category.save()
+            print("Created")
             print(new_category)
-            form.instance.category = new_category
             
-        form.instance.user = self.request.user
         return super(CreateWordView, self).form_valid(form)
 
 
