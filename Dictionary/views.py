@@ -169,7 +169,9 @@ def search_categories(request):
             search_text = request.POST["search_text"]
     else:
         search_text = ''
-    categories = models.Category.objects.filter(name__contains=search_text)
+    categories = models.Category.objects.filter(name__contains=search_text).values()
+
+    print(categories)
     
     if not categories.exists():
         error = "This is a new tag, it will be created."
@@ -177,7 +179,3 @@ def search_categories(request):
 
     else:
         return render(request, "Dictionary/category_search.html", {"categories": categories})
-
-
-
-# class SearchView():

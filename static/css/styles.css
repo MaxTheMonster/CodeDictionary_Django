@@ -42,8 +42,8 @@ body {
     background: white;
     color: limegreen !important;
     text-decoration: none; }
-  .button:focus {
-    transform: translateY(-0.4em);
+  .button:focus, .button:click {
+    transform: translateY(-4em);
     transition: 0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97); }
 
 /* [-=-=-=-=-=-=-=-=-] Styles [-=-=-=-=-=-=-=-=-] */

@@ -3,7 +3,7 @@
 {% else %}
 {% for category in categories %}
     <div class="category">
-        <h2><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h2>
+        <input type="radio" name="category" value="{{ category.name }}">{{ category.name }}
         <hr>
     </div>
 {% endfor %}

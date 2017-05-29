@@ -92,8 +92,8 @@ body {
         text-decoration: none;
     }
 
-    &:focus {
-        transform: translateY(-0.4em);
+    &:focus, &:click {
+        transform: translateY(-4em);
         transition: $transition;
     }
 }

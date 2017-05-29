@@ -5,14 +5,22 @@
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="text" id="category_search">
-    <div id="category_results"></div>
+    <label for="category_search">
+        Category: 
+        <input type="text" id="category_search" name="category_search">
+    </label>
+    <div id="category_results">
+        <radiogroup>
+        
+        </radiogroup>
+    </div>
     <input type="submit" value="Submit Word" />
 </form>
 
 <script>
-const search_results = document.querySelector("#category_results");
+const search_results = document.querySelector("#category_results radiogroup");
 const category_box = document.querySelector("#category_search");
+const hidden_category = document.querySelector("#id_category");
 
 function getDefinitions() {
   category_box_value = category_box.value
@@ -32,11 +40,16 @@ function getDefinitions() {
   });
 }
 
+function categorySelected(name) {
+    console.log(name)
+}
+
 
 function searchSuccess(data, textStatus, jqXHR) {
     search_results.innerHTML = data
     console.log(data)
 }
+
 
 category_box.addEventListener("keyup", getDefinitions);
 
