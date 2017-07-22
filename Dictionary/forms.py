@@ -10,7 +10,7 @@ class CreateWordForm(forms.ModelForm):
 
     class Meta:
         model = models.Word
-        fields = ["name", "definition", "category", ]
+        fields = ["name", "definition",]
 
 class UserCreationForm(UserCreationForm):
     email = forms.EmailField(label = "Email")

@@ -35,25 +35,56 @@ class CreateWordView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.user_creator = self.request.user
-        print(form.instance.category)
+
         return super(CreateWordView, self).form_valid(form)
 
     def form_invalid(self, form):
-        print("Invalid")
-        print(form.instance.category_search)
-        try:
-            category_check = models.Category.objects.get(name=form.instance.category)
-            print("Exists")
+        print(form.cleaned_data)
+        print(form.instance)
+        print(form.instance.name)
+        print(form.instance.definition)
 
-        except:
-            print("Does Not Exist, creating")
-            # new_category = models.Category(name=form.instance.category)
-            new_category = models.Category.objects.create(name=form.instance.category)
-            new_category.save()
-            print("Created")
-            print(new_category)
+        return super(CreateWordView, self).form_invalid(form)
+
+    # def post(self, request, *args, **kwargs):
+    #     print("POSTTTT")
+
+    #     data = request.POST
+    #     print(data["category"])
+    #     form = self.get_form()
+        
+    #     if form.is_valid():
+    #         print("VALID")
+
+    #         try:
+    #             category_check = models.Category.objects.get(name=data["category"])
+    #             print("Exists")
+
+    #         except models.Category.DoesNotExist:
+    #             print("Does Not Exist, creating")
+    #             # new_category = models.Category(name=form.instance.category)
+    #             new_category = models.Category.objects.create(name=data["category"])
+    #             new_category.save()
+    #             print("Created")
+    #             print(new_category)
+
+    #         return self.form_valid(form)
+    #     else:
+    #         return self.form_invalid(form)
+
+
+    # def form_valid(self, form):
+    #     form.instance.user_creator = self.request.user
+        
+
+    #     return super(CreateWordView, self).form_valid(form)
+
+    # def form_invalid(self, form):
+    #     print("Invalid")
+    #     form.instance.user_creator = self.request.user
+       
             
-        return super(CreateWordView, self).form_valid(form)
+    #     return super(CreateWordView, self).form_valid(form)
 
 
 class WordDetailView(generic.DetailView):
